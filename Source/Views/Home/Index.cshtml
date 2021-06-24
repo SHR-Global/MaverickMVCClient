@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (!string.IsNullOrWhiteSpace(Request.QueryString["errormessage"]))
+{
+    <div class="alert alert-danger" role="alert">Error: @Request.QueryString["errormessage"]</div>
+}
+
+<!-- Mashead header-->
+<header class="masthead bg-gradient-primary-to-secondary">
+    <div class="container px-5 text-white ">
+        <h2>Sample Maverick Client</h2>
+        <p class="lead">Sample application showcasing the guest login integration with SHR Maverick™ CRM</p>
+        <p><a href="https://shr.global/maverick-customer-relationship-management/" class="btn btn-link text-white">Learn more about Maverick™ CRM&raquo;</a></p>
+    </div>
+</header>
+
+<!-- App features section-->
+<section id="features">
+    <div class="container px-5">
+        <div class="row">
+            @if (Request.IsAuthenticated)
+            {
+                <div class="col-md-4">
+                    <h3>Welcome "@User.Identity.Name"!</h3>
+                    <p>@Html.ActionLink("View Profile", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile", @class = "btn btn-primary" })</p>
+                </div>
+            }
+            <div class="col-md-4">
+                <h3>View Chain Offers</h3>
+                @if (Request.IsAuthenticated) 
+                {
+                <p>View Loyalty offers across different properties.</p>
+                } 
+                else 
+                {
+                <p>View public offers across different properties.</p>
+                }
+                <p> <a class="btn btn-info" href="@ViewBag.IBEURLChain" target="_blank">Chain Offers</a></p>
+            </div>
+            <div class="col-md-4">
+                <h3>View Property offers</h3>
+                @if (Request.IsAuthenticated)
+                {
+                    <p>View Loyalty offers for specific property.</p>
+                }
+                else
+                {
+                    <p>View public offers for specific property.</p>
+                }
+                <p><a class="btn btn-info" href="@ViewBag.IBEURLHotel" target="_blank">Property Offers</a></p>
+            </div>
+        </div>
+    </div>
+</section>

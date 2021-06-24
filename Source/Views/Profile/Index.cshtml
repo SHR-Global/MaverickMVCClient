@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<section id="profile">
+    <div class="container px-5">
+        <h3>User Profile</h3>
+        @if (Request.IsAuthenticated)
+        {
+        <table class="table table-hover">
+            <tr><th scope="row">MemberID</th><td>@ViewBag.MemberID</td></tr>
+            <tr><th scope="row">Name</th><td>@ViewBag.Name</td></tr>
+            <tr><th scope="row">Email</th><td>@ViewBag.Email</td></tr>
+            <tr><th scope="row">Phone</th><td>@ViewBag.Phone</td></tr>
+            <tr><th scope="row">Member Level</th><td>@ViewBag.MemberLevel</td></tr>
+            <tr><th scope="row">Total Points</th><td>@ViewBag.TotalPoints</td></tr>
+            <tr><th scope="row">Points Amount</th><td>@ViewBag.PointsAmount @ViewBag.PointsCurrency</td></tr>
+            <tr><th scope="row">Address</th><td><address>@ViewBag.Address<br />@ViewBag.City @ViewBag.Region @ViewBag.Country</address></td></tr>
+        </table>
+        }
+    </div>
+</section>
